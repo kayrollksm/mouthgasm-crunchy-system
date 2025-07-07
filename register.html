@@ -3,8 +3,69 @@
 <head>
   <meta charset="UTF-8">
   <title>Daftar Mouthgasm Crunchy</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 450px; margin: 50px auto; }
+    h2 { text-align: center; }
+    input, button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #6a0dad;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-  <h2>Form sedang disiapkan...</h2>
+
+  <h2>Daftar Mouthgasm Crunchy</h2>
+
+  <form id="register-form">
+    <input name="name" placeholder="Nama Penuh" required>
+    <input name="phone" placeholder="No. Telefon" required>
+    <input name="email" type="email" placeholder="Email" required>
+    <input name="referral" placeholder="Kod Referral (jika ada)">
+    <button type="submit">Daftar Sekarang</button>
+  </form>
+
+  <p id="status-msg"></p>
+
+  <script>
+    document.getElementById("register-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const form = e.target;
+      const data = {
+        name: form.name.value,
+        phone: form.phone.value,
+        email: form.email.value,
+        referral: form.referral.value
+      };
+
+      fetch("GANTIKAN_DENGAN_URL_APPS_SCRIPT", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then(res => res.json())
+      .then(response => {
+        if (response.result === "success") {
+          window.location.href = `thank.html?id=${response.idPendaftar}`;
+        } else {
+          document.getElementById("status-msg").innerText = "Pendaftaran gagal. Sila cuba lagi.";
+        }
+      })
+      .catch(() => {
+        document.getElementById("status-msg").innerText = "Ralat berlaku. Sila cuba sebentar lagi.";
+      });
+    });
+  </script>
+
 </body>
 </html>
