@@ -1,1 +1,8 @@
-thank.html
+<h2>Terima kasih!</h2>
+<p>ID Pendaftar anda: <span id="id-pendaftar"></span></p>
+
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const id = urlParams.get('id');
+  document.getElementById("id-pendaftar").textContent = id || "Tiada";
+</script>
