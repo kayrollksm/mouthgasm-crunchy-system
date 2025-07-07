@@ -2,21 +2,30 @@
 <html lang="ms">
 <head>
   <meta charset="UTF-8">
-  <title>Terima Kasih!</title>
+  <title>Pendaftaran Berjaya</title>
   <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
     h1 { color: green; }
-    #id-output { font-weight: bold; color: green; }
+    h2 { color: black; }
   </style>
 </head>
 <body>
   <h1>Pendaftaran Berjaya!</h1>
-  <p>Terima kasih kerana mendaftar.</p>
-  <p>ID Pendaftar anda: <span id="id-output">Memuatkan...</span></p>
+  <h2>Terima kasih kerana mendaftar.</h2>
+  <p id="idPendaftar" style="color:green;font-weight:bold;"></p>
 
   <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get("id");
-    document.getElementById("id-output").innerText = id ?? "Tidak dijumpai.";
+    const id = localStorage.getItem("pendaftarID");
+    const display = document.getElementById("idPendaftar");
+    if (id) {
+      display.textContent = "ID Pendaftar anda: " + id;
+    } else {
+      display.textContent = "ID Pendaftar anda: Tidak dijumpai.";
+    }
   </script>
 </body>
 </html>
