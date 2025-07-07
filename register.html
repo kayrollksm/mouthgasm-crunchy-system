@@ -1,52 +1,56 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
   <title>Daftar Mouthgasm Crunchy</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 450px;
-      margin: 50px auto;
-      padding: 10px;
-    }
-    h2 {
-      text-align: center;
-    }
-    input, button {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      box-sizing: border-box;
-    }
-    button {
-      background-color: #6a0dad;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-  </style>
 </head>
 <body>
-
   <h2>Daftar Mouthgasm Crunchy</h2>
-
-  <form action="https://docs.google.com/forms/d/e/1FAIpQLScMAcejoco9pfaTHZeWsombg81j8EoonvX2lbcsBhssUEmg/formResponse"
-        method="POST"
-        target="hidden_iframe"
-        onsubmit="submitted=true;">
-    
-    <input name="entry.45106324" placeholder="Nama Penuh" required />
-    <input name="entry.841530307" placeholder="No. Telefon" required />
-    <input name="entry.220736382" placeholder="Email" type="email" required />
-    <input name="entry.274919911" placeholder="Kod Referral (jika ada)" />
-
+  <form id="register-form">
+    <input type="text" name="nama" placeholder="Nama Penuh" required><br><br>
+    <input type="tel" name="telefon" placeholder="No. Telefon" required><br><br>
+    <input type="email" name="email" placeholder="Email" required><br><br>
     <button type="submit">Daftar Sekarang</button>
   </form>
 
-  <iframe name="hidden_iframe" style="display:none;" onload="if(submitted) { window.location.href='thank.html'; }"></iframe>
-  <script>let submitted = false;</script>
+  <script>
+    document.getElementById("register-form").addEventListener("submit", function(e) {
+      e.preventDefault();
 
+      const form = e.target;
+      const nama = form.nama.value;
+      const telefon = form.telefon.value;
+      const email = form.email.value;
+
+      const formURL = 'https://docs.google.com/forms/d/e/1FAIpQLSCMAcejoco9pfaTHZeWsombg81jE0o.../formResponse'; // ganti dgn URL formResponse Google Form anda
+      const idPendaftar = generateID(); // Buat ID sendiri
+
+      const formData = new FormData();
+      formData.append("entry.45160324", nama); // sesuaikan entry ID ikut Google Form
+      formData.append("entry.84153007", telefon);
+      formData.append("entry.220736382", email);
+      formData.append("entry.274913991", idPendaftar); // ID Pendaftar custom
+
+      fetch(formURL, {
+        method: "POST",
+        body: formData,
+        mode: "no-cors"
+      }).then(() => {
+        window.location.href = `thank.html?id=${idPendaftar}`;
+      }).catch(err => {
+        alert("Ralat berlaku. Sila cuba lagi.");
+        console.error(err);
+      });
+
+      function generateID() {
+        const now = new Date();
+        const y = now.getFullYear().toString().substr(-2);
+        const m = (now.getMonth() + 1).toString().padStart(2, '0');
+        const d = now.getDate().toString().padStart(2, '0');
+        const r = Math.floor(1000 + Math.random() * 9000); // random 4 digit
+        return `MC${y}${m}${d}${r}`;
+      }
+    });
+  </script>
 </body>
 </html>
