@@ -2,40 +2,21 @@
 <html lang="ms">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Terima Kasih!</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 50px;
-    }
-    .id-box {
-      margin-top: 20px;
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #4CAF50;
-    }
+    h1 { color: green; }
+    #id-output { font-weight: bold; color: green; }
   </style>
 </head>
 <body>
   <h1>Pendaftaran Berjaya!</h1>
   <p>Terima kasih kerana mendaftar.</p>
-  <div class="id-box">
-    ID Pendaftar anda: <span id="idPendaftar"></span>
-  </div>
+  <p>ID Pendaftar anda: <span id="id-output">Memuatkan...</span></p>
 
   <script>
-    // Ambil ID dari URL
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get("id");
-
-    // Tunjukkan dalam span
-    if (id) {
-      document.getElementById("idPendaftar").textContent = id;
-    } else {
-      document.getElementById("idPendaftar").textContent = "Tidak dijumpai.";
-    }
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get("id");
+    document.getElementById("id-output").innerText = id ?? "Tidak dijumpai.";
   </script>
 </body>
 </html>
