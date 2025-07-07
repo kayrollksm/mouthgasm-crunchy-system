@@ -1,40 +1,43 @@
-<form id="register-form">
-  <input type="text" name="name" placeholder="Nama Penuh" required>
-  <input type="text" name="phone" placeholder="No Telefon" required>
-  <input type="email" name="email" placeholder="Email" required>
-  <input type="text" name="referral" placeholder="Kod Referral (jika ada)">
-  <button type="submit">Daftar Sekarang</button>
-</form>
-
-<p id="status-msg"></p>
-
-<script>
-document.getElementById("register-form").addEventListener("submit", function(e) {
-  e.preventDefault();
-
-  const form = e.target;
-  const data = {
-    name: form.name.value,
-    phone: form.phone.value,
-    email: form.email.value,
-    referral: form.referral.value
-  };
-
-  fetch("https://script.google.com/macros/s/AKfycbw0KuNsBzFcblNB4BEJ_DEyFzyOVTs_IqKeRGKyS0jowI-Wm__sOawITu33mFnU_3BT/exec", {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: { "Content-Type": "application/json" }
-  })
-  .then(res => res.json())
-  .then(response => {
-    if (response.result === "success") {
-      window.location.href = "thank.html?id=" + response.idPendaftar;
-    } else {
-      document.getElementById("status-msg").innerText = "Pendaftaran gagal. Sila cuba lagi.";
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daftar Mouthgasm Crunchy</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 450px;
+      margin: 50px auto;
+      padding: 10px;
     }
-  })
-  .catch(() => {
-    document.getElementById("status-msg").innerText = "Ralat berlaku. Sila cuba sebentar lagi.";
-  });
-});
-</script>
+    h2 {
+      text-align: center;
+    }
+    input, button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #6a0dad;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Daftar Mouthgasm Crunchy</h2>
+
+  <form action="https://docs.google.com/forms/d/e/1FAIpQLScMAcejoco9pfaTHZeWsombg81j8EoonvX2lbcsBhssUEmg/formResponse"
+        method="POST"
+        target="hidden_iframe"
+        onsubmit="submitted=true;">
+    
+    <input name="entry.45106324" placeholder="Nama Penuh" required />
+    <input name="entry.841530307" placeholder="No. Telefon" required />
+    <input name="entry.220736382" placeholder="Email" type="email" required />
+    <input name="entry.274919911" placeh
