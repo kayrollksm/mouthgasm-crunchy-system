@@ -1,23 +1,41 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Terima Kasih!</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      max-width: 500px;
-      margin: 100px auto;
       text-align: center;
+      padding: 50px;
     }
-    h1 {
-      color: #6a0dad;
+    .id-box {
+      margin-top: 20px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #4CAF50;
     }
   </style>
 </head>
 <body>
-  <h1>Terima Kasih!</h1>
-  <p>Pendaftaran anda telah berjaya.</p>
-  <p>Team Mouthgasm Crunchy akan hubungi anda secepat mungkin.</p>
+  <h1>Pendaftaran Berjaya!</h1>
+  <p>Terima kasih kerana mendaftar.</p>
+  <div class="id-box">
+    ID Pendaftar anda: <span id="idPendaftar"></span>
+  </div>
+
+  <script>
+    // Ambil ID dari URL
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+
+    // Tunjukkan dalam span
+    if (id) {
+      document.getElementById("idPendaftar").textContent = id;
+    } else {
+      document.getElementById("idPendaftar").textContent = "Tidak dijumpai.";
+    }
+  </script>
 </body>
 </html>
