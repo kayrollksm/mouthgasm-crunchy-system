@@ -1,8 +1,23 @@
-<h2>Terima kasih!</h2>
-<p>ID Pendaftar anda: <span id="id-pendaftar"></span></p>
-
-<script>
-  const urlParams = new URLSearchParams(window.location.search);
-  const id = urlParams.get('id');
-  document.getElementById("id-pendaftar").textContent = id || "Tiada";
-</script>
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <title>Terima Kasih!</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 500px;
+      margin: 100px auto;
+      text-align: center;
+    }
+    h1 {
+      color: #6a0dad;
+    }
+  </style>
+</head>
+<body>
+  <h1>Terima Kasih!</h1>
+  <p>Pendaftaran anda telah berjaya.</p>
+  <p>Team Mouthgasm Crunchy akan hubungi anda secepat mungkin.</p>
+</body>
+</html>
