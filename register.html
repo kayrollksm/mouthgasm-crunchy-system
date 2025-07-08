@@ -25,24 +25,32 @@
 </head>
 <body>
   <h2>Daftar Mouthgasm Crunchy</h2>
-  <form id="registerForm" action="https://docs.google.com/forms/d/e/1FAIpQLScMACejcoo9pfaTHJzeWsombg81j8EoorvfX2IbcsBhssUEmg/formResponse" method="POST" target="_blank" onsubmit="return handleSubmit()">
+  
+  <form 
+    action="https://docs.google.com/forms/d/e/1FAIpQLScMACejcoo9pfaTHJzeWsombg81j8EoorvfX2IbcsBhssUEmg/formResponse" 
+    method="POST"
+    target="hidden_iframe"
+    onsubmit="submitted=true; handleSubmit();"
+  >
     <input name="entry.45160324" id="nama" placeholder="Nama Penuh" required><br>
     <input name="entry.841350307" id="telefon" placeholder="No Telefon" required><br>
     <input name="entry.220736382" id="email" placeholder="Email" required><br>
     <input name="entry.279419191" id="referral" placeholder="Kod Referral (jika ada)"><br>
-    <input type="hidden" name="submitTime" id="submitTime">
+    <input type="hidden" name="entry.1051351635" id="submitTime">
+    
     <button type="submit">Daftar Sekarang</button>
   </form>
 
+  <!-- Trick iframe untuk redirect -->
+  <iframe name="hidden_iframe" style="display:none;" onload="if(submitted) { window.location.href='thank.html'; }"></iframe>
+
   <script>
+    let submitted = false;
+
     function handleSubmit() {
       const now = Date.now();
       localStorage.setItem("pendaftarID", now.toString());
       document.getElementById("submitTime").value = now;
-      setTimeout(() => {
-        window.location.href = "thank.html";
-      }, 500);
-      return true;
     }
   </script>
 </body>
