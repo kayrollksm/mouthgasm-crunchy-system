@@ -7,24 +7,48 @@
     body {
       font-family: Arial, sans-serif;
       text-align: center;
-      padding: 40px;
+      padding: 50px;
     }
     h1 { color: green; }
-    h2 { color: black; }
+    .box {
+      border: 1px solid #ccc;
+      padding: 20px;
+      margin-top: 30px;
+      border-radius: 10px;
+    }
+    .link-box {
+      margin-top: 10px;
+      background-color: #f0f0f0;
+      padding: 10px;
+      border-radius: 8px;
+    }
   </style>
 </head>
 <body>
   <h1>Pendaftaran Berjaya!</h1>
-  <h2>Terima kasih kerana mendaftar.</h2>
-  <p id="idPendaftar" style="color:green;font-weight:bold;"></p>
+  <p>Terima kasih kerana mendaftar.</p>
+
+  <div class="box">
+    <p><strong>ID Pendaftar Anda:</strong></p>
+    <p id="idPendaftar" style="font-size: 20px; font-weight: bold; color: purple;"></p>
+
+    <p><strong>Link Referral Anda:</strong></p>
+    <div class="link-box" id="referralLink"></div>
+  </div>
 
   <script>
     const id = localStorage.getItem("pendaftarID");
-    const display = document.getElementById("idPendaftar");
+    const idDisplay = document.getElementById("idPendaftar");
+    const linkDisplay = document.getElementById("referralLink");
+
     if (id) {
-      display.textContent = "ID Pendaftar anda: " + id;
+      idDisplay.textContent = id;
+      const baseURL = "https://kayrollksm.github.io/mouthgasm-referral/register.html";
+      const fullLink = `${baseURL}?ref=${id}`;
+      linkDisplay.textContent = fullLink;
     } else {
-      display.textContent = "ID Pendaftar anda: Tidak dijumpai.";
+      idDisplay.textContent = "ID tidak dijumpai.";
+      linkDisplay.textContent = "-";
     }
   </script>
 </body>
